@@ -8,24 +8,23 @@ const variants = {
   visible: { opacity: 1 },
 };
 
-export interface AnimeProp {
+export interface PokemonProp {
   id: string;
   name: string;
-  image: {
-    original: string;
+  images: {
+    small: string;
   };
-  kind: string;
-  episodes: number;
-  episodes_aired: number;
-  score: string;
+  rarity: string;
+  flavorText: string;
+  number: string;
 }
 
 interface Prop {
-  anime: AnimeProp;
+  pokemon: PokemonProp;
   index: number;
 }
 
-function AnimeCard({ anime, index }: Prop) {
+function PokemonCard({ pokemon, index }: Prop) {
   return (
     <MotionDiv
       variants={variants}
@@ -39,23 +38,23 @@ function AnimeCard({ anime, index }: Prop) {
       viewport={{ amount: 0 }}
       className='max-w-sm rounded relative w-full'
     >
-      <div className='relative w-full h-[37vh]'>
+      <div className='relative w-full'>
         <Image
-          src={`https://shikimori.one${anime.image.original}`}
-          alt={anime.name}
-          fill
-          className='rounded-xl'
-          sizes='500px'
+          src={`${pokemon.images.small}`}
+          alt={pokemon.name}
+          height={342}
+          width={245}
+          style={{ width: '100%' }}
         />
       </div>
       <div className='py-4 flex flex-col gap-3'>
         <div className='flex justify-between items-center gap-1'>
           <h2 className='font-bold text-white text-xl line-clamp-1 w-full'>
-            {anime.name}
+            {pokemon.name}
           </h2>
           <div className='py-1 px-2 bg-[#161921] rounded-sm'>
             <p className='text-white text-sm font-bold capitalize'>
-              {anime.kind}
+              {pokemon.rarity}
             </p>
           </div>
         </div>
@@ -69,7 +68,7 @@ function AnimeCard({ anime, index }: Prop) {
               className='object-contain'
             />
             <p className='text-base text-white font-bold'>
-              {anime.episodes || anime.episodes_aired}
+              {pokemon.flavorText}
             </p>
           </div>
           <div className='flex flex-row gap-2 items-center'>
@@ -80,7 +79,9 @@ function AnimeCard({ anime, index }: Prop) {
               height={18}
               className='object-contain'
             />
-            <p className='text-base font-bold text-[#FFAD49]'>{anime.score}</p>
+            <p className='text-base font-bold text-[#FFAD49]'>
+              {pokemon.number}
+            </p>
           </div>
         </div>
       </div>
@@ -88,4 +89,4 @@ function AnimeCard({ anime, index }: Prop) {
   );
 }
 
-export default AnimeCard;
+export default PokemonCard;
