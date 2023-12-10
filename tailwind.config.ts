@@ -12,7 +12,8 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        hero: 'url("/hero.png")',
+        hero: 'url("/pokeball_tcg.jpg")',
+        'overlay-dark': 'box-shadow: inset 0 0 0 100vh rgba(0, 0, 0, 0.8)',
       },
     },
   },

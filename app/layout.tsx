@@ -8,8 +8,8 @@ import Footer from './components/Footer';
 const dmSans = DM_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Anime Vault',
-  description: 'Your favorite anime, all in one place.',
+  title: 'Pokemon TCG Showcase',
+  description: 'Your favorite Pokemon, all in one place.',
 };
 
 export default function RootLayout({
