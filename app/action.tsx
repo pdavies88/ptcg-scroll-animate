@@ -1,13 +1,12 @@
 'use server';
 
-import PokemonCard, { PokemonProp } from './components/PokemonCard';
+import SetCard, { SetProp } from './components/SetCard';
+import { MAX_LIMIT } from './constants';
 
-const MAX_LIMIT = 8;
-
-export async function fetchPokemon(page: number) {
+export async function fetchPokemon(set: string, page: number) {
   // https://api.pokemontcg.io/v2/cards?q=types:water%20subtypes:mega
   const response = await fetch(
-    `https://api.pokemontcg.io/v2/cards?q=set.id:sm1&pageSize=${MAX_LIMIT}&page=${page}`,
+    `https://api.pokemontcg.io/v2/cards?q=set.id:${set}&pageSize=${MAX_LIMIT}&page=${page}`,
     {
       headers: {
         'X-Api-Key': process.env.API_KEY!,
@@ -17,7 +16,19 @@ export async function fetchPokemon(page: number) {
 
   const { data } = await response.json();
 
-  return data.map((pokemon: PokemonProp, index: number) => (
-    <PokemonCard key={pokemon.id} pokemon={pokemon} index={index} />
+  return data;
+}
+
+export async function fetchSets() {
+  const response = await fetch(`https://api.pokemontcg.io/v2/sets`, {
+    headers: {
+      'X-Api-Key': process.env.API_KEY!,
+    },
+  });
+
+  const { data } = await response.json();
+
+  return data.map((set: SetProp) => (
+    <SetCard key={set.id} id={set.id} name={set.name} images={set.images} />
   ));
 }
