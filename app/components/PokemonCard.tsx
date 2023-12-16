@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import { MotionDiv } from './Motion';
 
-const stagger = 0.25;
+const stagger = 0.5;
 
 const variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 };
 
-export interface PokemonProp {
+export type PokemonProp = {
   id: string;
   name: string;
   images: {
@@ -17,21 +17,16 @@ export interface PokemonProp {
   rarity: string;
   flavorText: string;
   number: string;
-}
+};
 
-interface Prop {
-  pokemon: PokemonProp;
-  index: number;
-}
-
-function PokemonCard({ pokemon, index }: Prop) {
+function PokemonCard({ pokemon }: { pokemon: PokemonProp }) {
   return (
     <MotionDiv
       variants={variants}
       initial='hidden'
       animate='visible'
       transition={{
-        delay: index * stagger,
+        delay: stagger,
         ease: 'easeInOut',
         duration: 0.5,
       }}
@@ -61,7 +56,7 @@ function PokemonCard({ pokemon, index }: Prop) {
         <div className='flex gap-4 items-center'>
           <div className='flex flex-row gap-2 items-center'>
             <Image
-              src='./episodes.svg'
+              src='../episodes.svg'
               alt='episodes'
               width={20}
               height={20}
@@ -73,7 +68,7 @@ function PokemonCard({ pokemon, index }: Prop) {
           </div>
           <div className='flex flex-row gap-2 items-center'>
             <Image
-              src='./star.svg'
+              src='../star.svg'
               alt='star'
               width={18}
               height={18}
