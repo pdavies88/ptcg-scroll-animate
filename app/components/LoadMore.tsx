@@ -13,28 +13,24 @@ function LoadMore({ set, totalInSet }: { set: string; totalInSet: number }) {
   const { ref, inView } = useInView();
 
   const [data, setData] = useState<PokemonProp[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  let loadingLimit = MAX_LIMIT * (page - 1) <= totalInSet;
+  const loadingLimit = MAX_LIMIT * (page - 1) >= totalInSet;
 
   useEffect(() => {
-    if (inView && loadingLimit) {
-      setIsLoading(true);
-      // Add a delay of 500 milliseconds
-      const delay = 500;
+    if (inView && !loadingLimit) {
+      // Add a delay of 250 milliseconds
+      const delay = 250;
 
       const timeoutId = setTimeout(() => {
         fetchPokemon(set, page).then((res) => {
           setData([...data, ...res]);
           page++;
         });
-
-        setIsLoading(false);
       }, delay);
 
       // Clear the timeout if the component is unmounted or inView becomes false
       return () => clearTimeout(timeoutId);
     }
-  }, [inView, data, isLoading, set, loadingLimit]);
+  }, [inView, data, set, loadingLimit]);
 
   return (
     <>
@@ -43,10 +39,10 @@ function LoadMore({ set, totalInSet }: { set: string; totalInSet: number }) {
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
       </section>
-      {loadingLimit && (
+      {!loadingLimit && (
         <section className='flex justify-center items-center w-full'>
           <div ref={ref}>
-            {inView && isLoading && (
+            {inView && (
               <Image
                 src='../spinner.svg'
                 alt='spinner'
