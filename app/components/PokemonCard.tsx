@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { MotionDiv } from './Motion';
 import Link from 'next/link';
 
-const stagger = 0.5;
+const stagger = 0.25;
 
 const variants = {
   hidden: { opacity: 0 },
@@ -35,7 +35,7 @@ function PokemonCard({ pokemon }: { pokemon: PokemonProp }) {
           duration: 0.5,
         }}
         viewport={{ amount: 0 }}
-        className='max-w-sm rounded relative w-full'
+        className='max-w-sm mx-auto relative w-full'
       >
         <div className='relative w-full'>
           <Image
@@ -46,12 +46,13 @@ function PokemonCard({ pokemon }: { pokemon: PokemonProp }) {
             style={{ width: '100%' }}
           />
         </div>
-        <div className='columns-2 font-bold'>
+        <div className='flex justify-between font-bold'>
           <h2>{pokemon.name}</h2>
-          <p className='text-right'>
-            #{pokemon.number} | {pokemon.rarity}
-          </p>
+          <p className='text-right'>#{pokemon.number}</p>
         </div>
+        <p className='font-bold border-t-2 border-white mt-1 pt-1'>
+          {pokemon.rarity}
+        </p>
       </MotionDiv>
     </Link>
   );

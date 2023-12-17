@@ -7,92 +7,110 @@ const PokemonPage = async ({ params }: { params: { pokemon: string } }) => {
   const pokemonId = params.pokemon;
 
   const data = await fetchSingle(pokemonId);
-  const { name, images, tcgplayer } = data;
+
   return (
-    <div className='md:columns-2'>
-      <Image
-        src={`${images.large}`}
-        alt={name}
-        height={798}
-        width={580}
-        style={{ width: '100%' }}
-      />
-      <div className='flex flex-col items-center mt-4 md:mt-0'>
-        <h2 className='text-2xl mb-4'>{name}</h2>
-        <h3 className='text-xl mb-2'>TCG Player Prices:</h3>
-        <div className='flex gap-4'>
-          {tcgplayer.prices?.['1stEditionHolofoil'] && (
-            <PriceTable
-              type='1st Edition Holo'
-              low={tcgplayer.prices?.['1stEditionHolofoil'].low}
-              mid={tcgplayer.prices?.['1stEditionHolofoil'].mid}
-              high={tcgplayer.prices?.['1stEditionHolofoil'].high}
-            />
-          )}
-          {tcgplayer.prices?.['1stEditionNormal'] && (
-            <PriceTable
-              type='1st Edition Normal'
-              low={tcgplayer.prices?.['1stEditionNormal'].low}
-              mid={tcgplayer.prices?.['1stEditionNormal'].mid}
-              high={tcgplayer.prices?.['1stEditionNormal'].high}
-            />
-          )}
-          {tcgplayer.prices?.unlimitedHolofoil && (
-            <PriceTable
-              type='Unlimited Holo'
-              low={tcgplayer.prices?.unlimitedHolofoil.low}
-              mid={tcgplayer.prices?.unlimitedHolofoil.mid}
-              high={tcgplayer.prices?.unlimitedHolofoil.high}
-            />
-          )}
-          {tcgplayer.prices?.holofoil && (
-            <PriceTable
-              type='Holo'
-              low={tcgplayer.prices?.holofoil.low}
-              mid={tcgplayer.prices?.holofoil.mid}
-              high={tcgplayer.prices?.holofoil.high}
-            />
-          )}
-          {tcgplayer.prices?.reverseHolofoil && (
-            <PriceTable
-              type='Reverse Holo'
-              low={tcgplayer.prices?.reverseHolofoil.low}
-              mid={tcgplayer.prices?.reverseHolofoil.mid}
-              high={tcgplayer.prices?.reverseHolofoil.high}
-            />
-          )}
-          {tcgplayer.prices?.normal && (
-            <PriceTable
-              type='Normal'
-              low={tcgplayer.prices?.normal.low}
-              mid={tcgplayer.prices?.normal.mid}
-              high={tcgplayer.prices?.normal.high}
-            />
-          )}
-          {tcgplayer.prices?.['1stEdition'] && (
-            <PriceTable
-              type='1st Edition'
-              low={tcgplayer.prices?.['1stEdition'].low}
-              mid={tcgplayer.prices?.['1stEdition'].mid}
-              high={tcgplayer.prices?.['1stEdition'].high}
-            />
-          )}
-          {tcgplayer.prices?.unlimited && (
-            <PriceTable
-              type='1st Edition'
-              low={tcgplayer.prices?.unlimited.low}
-              mid={tcgplayer.prices?.unlimited.mid}
-              high={tcgplayer.prices?.unlimited.high}
-            />
+    <>
+      <Link href='/'>
+        <Image
+          src='/home_link.png'
+          alt='Home Page'
+          height={53}
+          width={102}
+          className='absolute top-4 left-16'
+        />
+      </Link>
+      <div className='md:columns-2'>
+        <Image
+          src={`${data?.images?.large}`}
+          alt={data?.name}
+          height={798}
+          width={580}
+          style={{ width: '100%' }}
+          className='p-16'
+        />
+        <div className='flex flex-col items-center pb-16 md:pt-16'>
+          <h2 className='text-2xl mb-4'>{data?.name}</h2>
+          {data?.tcgplayer && (
+            <>
+              <h3 className='text-xl mb-2'>TCG Player Prices:</h3>
+              <div className='flex gap-4'>
+                {data?.tcgplayer?.prices?.['1stEditionHolofoil'] && (
+                  <PriceTable
+                    type='1st Edition Holo'
+                    low={data?.tcgplayer?.prices?.['1stEditionHolofoil'].low}
+                    mid={data?.tcgplayer?.prices?.['1stEditionHolofoil'].mid}
+                    high={data?.tcgplayer?.prices?.['1stEditionHolofoil'].high}
+                  />
+                )}
+                {data?.tcgplayer?.prices?.['1stEditionNormal'] && (
+                  <PriceTable
+                    type='1st Edition Normal'
+                    low={data?.tcgplayer?.prices?.['1stEditionNormal'].low}
+                    mid={data?.tcgplayer?.prices?.['1stEditionNormal'].mid}
+                    high={data?.tcgplayer?.prices?.['1stEditionNormal'].high}
+                  />
+                )}
+                {data?.tcgplayer?.prices?.unlimitedHolofoil && (
+                  <PriceTable
+                    type='Unlimited Holo'
+                    low={data?.tcgplayer?.prices?.unlimitedHolofoil.low}
+                    mid={data?.tcgplayer?.prices?.unlimitedHolofoil.mid}
+                    high={data?.tcgplayer?.prices?.unlimitedHolofoil.high}
+                  />
+                )}
+                {data?.tcgplayer?.prices?.holofoil && (
+                  <PriceTable
+                    type='Holo'
+                    low={data?.tcgplayer?.prices?.holofoil.low}
+                    mid={data?.tcgplayer?.prices?.holofoil.mid}
+                    high={data?.tcgplayer?.prices?.holofoil.high}
+                  />
+                )}
+                {data?.tcgplayer?.prices?.reverseHolofoil && (
+                  <PriceTable
+                    type='Reverse Holo'
+                    low={data?.tcgplayer?.prices?.reverseHolofoil.low}
+                    mid={data?.tcgplayer?.prices?.reverseHolofoil.mid}
+                    high={data?.tcgplayer?.prices?.reverseHolofoil.high}
+                  />
+                )}
+                {data?.tcgplayer?.prices?.normal && (
+                  <PriceTable
+                    type='Normal'
+                    low={data?.tcgplayer?.prices?.normal.low}
+                    mid={data?.tcgplayer?.prices?.normal.mid}
+                    high={data?.tcgplayer?.prices?.normal.high}
+                  />
+                )}
+                {data?.tcgplayer?.prices?.['1stEdition'] && (
+                  <PriceTable
+                    type='1st Edition'
+                    low={data?.tcgplayer?.prices?.['1stEdition'].low}
+                    mid={data?.tcgplayer?.prices?.['1stEdition'].mid}
+                    high={data?.tcgplayer?.prices?.['1stEdition'].high}
+                  />
+                )}
+                {data?.tcgplayer?.prices?.unlimited && (
+                  <PriceTable
+                    type='1st Edition'
+                    low={data?.tcgplayer?.prices?.unlimited.low}
+                    mid={data?.tcgplayer?.prices?.unlimited.mid}
+                    high={data?.tcgplayer?.prices?.unlimited.high}
+                  />
+                )}
+              </div>
+              {data?.tcgplayer?.url && (
+                <Link href={data.tcgplayer.url} target='_blank'>
+                  <button className='rounded-full bg-blue-800 py-2 px-4 uppercase mt-8 hover:bg-sky-500'>
+                    Buy Now
+                  </button>
+                </Link>
+              )}
+            </>
           )}
         </div>
-        <Link href={tcgplayer.url} target='_blank'>
-          <button className='rounded-full bg-blue-800 py-2 px-4 uppercase my-4 hover:bg-sky-500'>
-            Buy Now
-          </button>
-        </Link>
       </div>
-    </div>
+    </>
   );
 };
 
