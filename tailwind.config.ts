@@ -15,6 +15,10 @@ const config: Config = {
         hero: 'url("/pokeball_tcg.jpg")',
         'overlay-dark': 'box-shadow: inset 0 0 0 100vh rgba(0, 0, 0, 0.8)',
       },
+      fontFamily: {
+        sans: ['var(--font-opensans)'],
+        mono: ['var(--font-roboto-mono)'],
+      },
     },
   },
   plugins: [],
