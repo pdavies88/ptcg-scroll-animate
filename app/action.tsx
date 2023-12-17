@@ -32,3 +32,15 @@ export async function fetchSets() {
     <SetCard key={set.id} id={set.id} name={set.name} images={set.images} />
   ));
 }
+
+export async function fetchSingle(id: string) {
+  const response = await fetch(`https://api.pokemontcg.io/v2/cards/${id}`, {
+    headers: {
+      'X-Api-Key': process.env.API_KEY!,
+    },
+  });
+
+  const { data } = await response.json();
+
+  return data;
+}

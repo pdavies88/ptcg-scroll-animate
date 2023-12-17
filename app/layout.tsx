@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
-import { DM_Sans } from 'next/font/google';
+import { Open_Sans, Roboto_Mono } from 'next/font/google';
 
 import './globals.css';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 
-const dmSans = DM_Sans({ subsets: ['latin'] });
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-opensans',
+});
+
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto-mono',
+});
 
 export const metadata: Metadata = {
   title: 'Pokemon TCG Showcase',
@@ -18,8 +28,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body className={dmSans.className}>
+    <html
+      lang='en'
+      className={`${openSans.variable} ${robotoMono.variable} font-sans`}
+    >
+      <body>
         <main className='max-w-7xl mx-auto bg-[#0F1117]'>
           <Hero />
           {children}
