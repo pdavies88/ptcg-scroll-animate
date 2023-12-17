@@ -13,12 +13,12 @@ function LoadMore({ set, totalInSet }: { set: string; totalInSet: number }) {
   const { ref, inView } = useInView();
 
   const [data, setData] = useState<PokemonProp[]>([]);
-  const loadingLimit = MAX_LIMIT * (page - 1) >= totalInSet;
+  const [, setInitLoad] = useState(false);
+  let loadingLimit = MAX_LIMIT * (page - 1) >= totalInSet;
 
   useEffect(() => {
     if (inView && !loadingLimit) {
-      // Add a delay of 250 milliseconds
-      const delay = 250;
+      const delay = 300;
 
       const timeoutId = setTimeout(() => {
         fetchPokemon(set, page).then((res) => {
@@ -32,9 +32,15 @@ function LoadMore({ set, totalInSet }: { set: string; totalInSet: number }) {
     }
   }, [inView, data, set, loadingLimit]);
 
+  useEffect(() => {
+    setInitLoad(true);
+    page = 2;
+    return () => setInitLoad(false);
+  }, []);
+
   return (
     <>
-      <section className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10'>
+      <section className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-8 px-16 justify-center mb-16'>
         {data.map((pokemon: PokemonProp) => (
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}

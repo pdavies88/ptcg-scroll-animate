@@ -14,7 +14,7 @@ const SetCard = ({ id, name, images }: SetProp) => {
   return (
     <Link
       href={`/set/${id}`}
-      className='flex flex-col items-center p-3 bg-blue-800 border border-white rounded-md border-2 text-center'
+      className='flex flex-col items-center p-3 bg-blue-800 border-white rounded-md border-2 text-center'
     >
       <Image
         src={images.symbol}
