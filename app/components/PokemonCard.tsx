@@ -24,7 +24,7 @@ export type PokemonProp = {
 
 function PokemonCard({ pokemon }: { pokemon: PokemonProp }) {
   return (
-    <Link href={`/set/${pokemon.set.id}/${pokemon.id}`}>
+    <Link href={`/pokemon/${pokemon.id}`}>
       <MotionDiv
         variants={variants}
         initial='hidden'

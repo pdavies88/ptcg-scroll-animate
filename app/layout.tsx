@@ -4,6 +4,7 @@ import { Open_Sans, Roboto_Mono } from 'next/font/google';
 import './globals.css';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
+import Navigation from './components/Navigation';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -33,7 +34,8 @@ export default function RootLayout({
       className={`${openSans.variable} ${robotoMono.variable} font-sans`}
     >
       <body>
-        <main className='max-w-7xl mx-auto bg-[#0F1117]'>
+        <main className='max-w-7xl mx-auto bg-gray-800 relative'>
+          <Navigation />
           <Hero />
           {children}
           <Footer />

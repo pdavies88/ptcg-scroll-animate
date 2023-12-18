@@ -1,24 +1,15 @@
 import { fetchSingle } from '@/app/action';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PriceTable } from '../../../components/PriceTable';
+import { PriceTable } from '../../components/PriceTable';
 
-const PokemonPage = async ({ params }: { params: { pokemon: string } }) => {
-  const pokemonId = params.pokemon;
+const PokemonPage = async ({ params }: { params: { slug: string } }) => {
+  const pokemonId = params.slug;
 
   const data = await fetchSingle(pokemonId);
 
   return (
     <>
-      <Link href='/'>
-        <Image
-          src='/home_link.png'
-          alt='Home Page'
-          height={53}
-          width={102}
-          className='absolute top-4 left-16'
-        />
-      </Link>
       <div className='md:columns-2'>
         <Image
           src={`${data?.images?.large}`}

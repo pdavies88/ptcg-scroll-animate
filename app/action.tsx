@@ -1,6 +1,5 @@
 'use server';
 
-import SetCard, { SetProp } from './components/SetCard';
 import { MAX_LIMIT } from './constants';
 
 export async function fetchPokemon(set: string, page: number) {
@@ -28,9 +27,7 @@ export async function fetchSets() {
 
   const { data } = await response.json();
 
-  return data.map((set: SetProp) => (
-    <SetCard key={set.id} id={set.id} name={set.name} images={set.images} />
-  ));
+  return data;
 }
 
 export async function fetchSingle(id: string) {

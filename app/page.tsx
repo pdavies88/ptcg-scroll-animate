@@ -1,4 +1,5 @@
 import { fetchSets } from './action';
+import SetCard, { SetProp } from './components/SetCard';
 
 async function Home() {
   const sets = await fetchSets();
@@ -9,7 +10,14 @@ async function Home() {
         Explore Pokemon TCG Sets
       </h2>
       <section className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8'>
-        {sets}
+        {sets.map((set: SetProp) => (
+          <SetCard
+            key={set.id}
+            id={set.id}
+            name={set.name}
+            images={set.images}
+          />
+        ))}
       </section>
     </main>
   );
