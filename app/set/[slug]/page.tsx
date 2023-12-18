@@ -2,8 +2,6 @@ import { fetchPokemon } from '@/app/action';
 import LoadMore from '@/app/components/LoadMore';
 import PokemonCard, { PokemonProp } from '@/app/components/PokemonCard';
 import ScrollToTop from '@/app/components/ScrollToTop';
-import Image from 'next/image';
-import Link from 'next/link';
 
 const SetPage = async ({ params }: { params: { slug: string } }) => {
   const set = params.slug;
@@ -13,15 +11,6 @@ const SetPage = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <Link href='/'>
-        <Image
-          src='/home_link.png'
-          alt='Home Page'
-          height={53}
-          width={102}
-          className='absolute top-4 left-16'
-        />
-      </Link>
       <ScrollToTop />
       <h2 className='text-2xl py-8 px-16'>Set Name: {setName}</h2>
       <section className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-8 mb-10 px-16 justify-center'>

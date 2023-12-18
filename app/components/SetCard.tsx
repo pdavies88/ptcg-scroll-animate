@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export interface SetProp {
+export type SetProp = {
   id: string;
   name: string;
   images: {
     symbol: string;
     logo: string;
   };
-}
+};
 
 const SetCard = ({ id, name, images }: SetProp) => {
   return (
