@@ -3,6 +3,7 @@ import { fetchCardTypes } from '../action';
 import { pickUniqueRandomObjects, weightedRandomSelection } from './helpers';
 import { CardData, CardWeighted } from './types';
 import TiltCard from '../components/CardTilt';
+import RefreshPage from '../components/RefreshPage';
 
 // Pack Structure:
 // Packs say 10 cards energy does not count towards pack total
@@ -130,32 +131,35 @@ const SunMoon1 = async () => {
   ];
 
   return (
-    <section className='p-16'>
-      <div className='flex flex-col justify-center items-center'>
-        <h2 className='text-2xl pb-4'>Sun & Moon Base Set</h2>
-        <Image
-          src={`/packs/sm1_pack.jpg`}
-          alt='Sun & Moon Pack Artwork'
-          height={342}
-          width={245}
-          className='max-h-60 object-contain'
-        />
-      </div>
-      <hr className='my-8' />
-      <div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-8'>
-        {!!combinedPack.length &&
-          combinedPack.map((pack) => (
-            <div key={pack?.id}>
-              <TiltCard
-                name={pack?.name}
-                image={pack?.images?.large}
-                rarity={pack?.rarity}
-                supertype={pack?.supertype}
-              />
-            </div>
-          ))}
-      </div>
-    </section>
+    <>
+      <RefreshPage />
+      <section className='p-16'>
+        <div className='flex flex-col justify-center items-center'>
+          <h2 className='text-2xl pb-4'>Sun & Moon Base Set</h2>
+          <Image
+            src={`/packs/sm1_pack.jpg`}
+            alt='Sun & Moon Pack Artwork'
+            height={342}
+            width={245}
+            className='max-h-60 object-contain'
+          />
+        </div>
+        <hr className='my-8' />
+        <div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-8'>
+          {!!combinedPack.length &&
+            combinedPack.map((pack) => (
+              <div key={pack?.id}>
+                <TiltCard
+                  name={pack?.name}
+                  image={pack?.images?.large}
+                  rarity={pack?.rarity}
+                  supertype={pack?.supertype}
+                />
+              </div>
+            ))}
+        </div>
+      </section>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import SunMoon1 from '../packs/sm1';
+import SunMoon1 from './sm1';
 
 export const renderPack = (pack: string) => {
   switch (pack) {
