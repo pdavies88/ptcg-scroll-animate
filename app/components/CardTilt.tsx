@@ -1,7 +1,7 @@
 'use client';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const reverseType = (supertype: string) => {
   switch (supertype) {
@@ -25,6 +25,7 @@ const TiltCard = ({
   rarity: string;
   supertype: string;
 }) => {
+  const divRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -74,72 +75,86 @@ const TiltCard = ({
     }
   }
 
+  function zoom() {
+    if (!divRef.current?.classList.contains('zoom')) {
+      divRef.current?.classList.add('zoom');
+    } else {
+      divRef.current?.classList.remove('zoom');
+    }
+  }
+
   return (
-    <motion.div
-      className='flip-card-inner w-[245px] h-[342px] cursor-pointer'
-      initial={false}
-      animate={{ rotateY: isFlipped ? 180 : 0 }}
-      transition={{ duration: 0.3, animationDirection: 'normal' }}
-      onAnimationComplete={() => {
-        setIsAnimating(false);
-      }}
+    <div
+      ref={divRef}
       onClick={() => {
         if (!isFlipped) {
           handleFlip();
+        } else {
+          zoom();
         }
       }}
     >
-      <Image
-        src={`/card_back.png`}
-        alt='Pokemon Card Back'
-        height={342}
-        width={245}
-        className='flip-card-front max-h-[342px]'
-      />
-      {isFlipped && (
-        <motion.div
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          style={{
-            rotateY,
-            rotateX,
-            transformStyle: 'preserve-3d',
-          }}
-        >
-          {(rarity === 'Reverse Holo' ||
-            rarity === 'Rare Holo GX' ||
-            rarity === 'Rare Ultra' ||
-            rarity === 'Rare Rainbow' ||
-            rarity === 'Rare Secret') &&
-            !isAnimating && <span className='shine' />}
-          {rarity === 'Rare Holo' && !isAnimating && (
-            <span className='shine-small' />
-          )}
-          <Image
-            src={image}
-            alt={name || 'Card Image'}
-            height={342}
-            width={245}
-            className='flip-card-back max-h-[342px]'
-          />
-          {rarity === 'Reverse Holo' && !isAnimating && (
+      <motion.div
+        className='flip-card-inner w-[245px] h-[342px] cursor-pointer'
+        initial={false}
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.3, animationDirection: 'normal' }}
+        onAnimationComplete={() => {
+          setIsAnimating(false);
+        }}
+      >
+        <Image
+          src={`/card_back.png`}
+          alt='Pokemon Card Back'
+          height={342}
+          width={245}
+          className='flip-card-front max-h-[342px]'
+        />
+        {isFlipped && (
+          <motion.div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+              rotateY,
+              rotateX,
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            {(rarity === 'Reverse Holo' ||
+              rarity === 'Rare Holo GX' ||
+              rarity === 'Rare Ultra' ||
+              rarity === 'Rare Rainbow' ||
+              rarity === 'Rare Secret') &&
+              !isAnimating && <span className='shine' />}
+            {rarity === 'Rare Holo' && !isAnimating && (
+              <span className='shine-small' />
+            )}
             <Image
               src={image}
               alt={name || 'Card Image'}
               height={342}
               width={245}
-              className={reverseType(supertype)}
-              style={{
-                top: 0,
-                position: 'absolute',
-                transform: 'rotateY(180deg)',
-                zIndex: '2',
-              }}
+              className='flip-card-back max-h-[342px]'
             />
-          )}
-        </motion.div>
-      )}
-    </motion.div>
+            {rarity === 'Reverse Holo' && !isAnimating && (
+              <Image
+                src={image}
+                alt={name || 'Card Image'}
+                height={342}
+                width={245}
+                className={reverseType(supertype)}
+                style={{
+                  top: 0,
+                  position: 'absolute',
+                  transform: 'rotateY(180deg)',
+                  zIndex: '2',
+                }}
+              />
+            )}
+          </motion.div>
+        )}
+      </motion.div>
+    </div>
   );
 };
 
