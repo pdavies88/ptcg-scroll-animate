@@ -6,6 +6,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
     <AnimatePresence mode='wait'>
       <motion.section>{children}</motion.section>
       <motion.div
+        key='slide-in'
         className='slide-in'
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 0 }}
@@ -13,6 +14,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       />
       <motion.div
+        key='slide-out'
         className='slide-out'
         initial={{ scaleY: 1 }}
         animate={{ scaleY: 0 }}

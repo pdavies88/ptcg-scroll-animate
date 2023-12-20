@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { fetchCardTypes } from '../action';
 import { pickUniqueRandomObjects, weightedRandomSelection } from './helpers';
 import { CardData, CardWeighted } from './types';
+import TiltCard from '../components/CardTilt';
 
 // Pack Structure:
 // Packs say 10 cards energy does not count towards pack total
@@ -135,15 +136,12 @@ const SunMoon1 = async () => {
         {!!combinedPack.length &&
           combinedPack.map((pack) => (
             <div key={pack?.id} className='relative'>
-              {pack?.rarity === 'Reverse Holo' && <span className='shine' />}
-              {pack?.rarity === 'Rare Holo' && <span className='shine-small' />}
-              <Image
-                src={`${pack?.images?.large}`}
-                alt={pack?.name || 'Card Image'}
-                height={342}
-                width={245}
+              <TiltCard
+                name={pack?.name}
+                image={pack?.images?.large}
+                rarity={pack?.rarity}
+                supertype={pack?.supertype}
               />
-              <div>{pack?.rarity}</div>
             </div>
           ))}
       </section>
