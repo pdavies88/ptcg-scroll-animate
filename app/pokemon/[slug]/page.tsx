@@ -10,16 +10,16 @@ const PokemonPage = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <div className='md:columns-2'>
+      <div className='md:columns-2 p-16'>
         <Image
           src={`${data?.images?.large}`}
           alt={data?.name}
           height={798}
           width={580}
           style={{ width: '100%' }}
-          className='p-16'
+          className='rounded-xl'
         />
-        <div className='flex flex-col items-center pb-16 md:pt-16'>
+        <div className='flex flex-col items-center pt-8 md:pt-16'>
           <h2 className='text-2xl mb-4'>{data?.name}</h2>
           {data?.tcgplayer && (
             <>
