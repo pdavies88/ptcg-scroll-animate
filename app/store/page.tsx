@@ -27,7 +27,7 @@ const Store = async () => {
             width={245}
             className='max-h-60 object-contain my-4'
           />
-          <Link href={`/store/${set.id}`}>
+          <Link href={`/packs/${set.id}`}>
             <button className='border-white border rounded-md py-4 px-8 text-center hover:bg-blue-500'>
               Open Pack
             </button>

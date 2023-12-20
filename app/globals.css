@@ -188,10 +188,8 @@ body {
 }
 
 .zoom .flip-card-inner {
-  transform: rotateY(180deg) translateZ(0px) scale(2) translateX(25%)
-    translateY(-25%) !important;
+  transform: rotateY(180deg) translateZ(0px) scale(2) translateY(-25%) !important;
   transition: none;
   position: relative;
   top: 50%;
-  left: 50%;
 }
