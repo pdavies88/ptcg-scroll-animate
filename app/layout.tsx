@@ -34,7 +34,7 @@ export default function RootLayout({
       className={`${openSans.variable} ${robotoMono.variable} font-sans`}
     >
       <body>
-        <main className='max-w-7xl mx-auto bg-gray-800 relative'>
+        <main className='max-w-7xl mx-auto bg-red-950 relative'>
           <Navigation />
           <Hero />
           {children}

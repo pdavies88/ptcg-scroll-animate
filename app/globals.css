@@ -148,6 +148,35 @@ body {
   transform: rotateY(180deg);
 }
 
+.flip-card-front:hover {
+  border-radius: 0.75rem;
+  animation: flickering-light 4s ease-in;
+  animation-delay: 0.5s;
+  box-shadow: 0 0 20px 5px #fff;
+}
+
+.flip-card-back:hover {
+  border-radius: 0.75rem;
+  box-shadow: 0 0 20px 5px #fff;
+}
+
+@keyframes flickering-light {
+  0% {
+    box-shadow: 0 0 40px 10px #fff;
+  }
+  3% {
+    box-shadow: 0 0 20px 5px #fff;
+  }
+  5% {
+    box-shadow: 0 0 40px 5px #fff;
+  }
+  15% {
+    box-shadow: 0 0 20px 5px #fff;
+  }
+  100% {
+    box-shadow: 0 0 20px 5px #fff;
+  }
+}
 .zoom {
   position: fixed;
   background: rgba(0, 0, 0, 0.6);

@@ -22,7 +22,7 @@ const Store = async () => {
           <div>{set.name}</div>
           <Image
             src={`/packs/${set.id}_pack.jpg`}
-            alt={`${set.name} Pack`}
+            alt={`${set.name} Pack Artwork`}
             height={342}
             width={245}
             className='max-h-60 object-contain my-4'

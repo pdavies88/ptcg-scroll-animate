@@ -130,9 +130,18 @@ const SunMoon1 = async () => {
   ];
 
   return (
-    <div>
-      <h2>Pack output</h2>
-      <section className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 px-16'>
+    <section className='p-16'>
+      <div className='flex flex-col justify-center items-center pb-8'>
+        <h2 className='text-2xl pb-4'>Sun & Moon Base Set</h2>
+        <Image
+          src={`/packs/sm1_pack.jpg`}
+          alt='Sun & Moon Pack Artwork'
+          height={342}
+          width={245}
+          className='max-h-60 object-contain'
+        />
+      </div>
+      <div className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-8 justify-center'>
         {!!combinedPack.length &&
           combinedPack.map((pack) => (
             <div key={pack?.id}>
@@ -144,8 +153,8 @@ const SunMoon1 = async () => {
               />
             </div>
           ))}
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 
