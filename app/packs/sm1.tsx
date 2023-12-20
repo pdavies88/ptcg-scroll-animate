@@ -131,7 +131,7 @@ const SunMoon1 = async () => {
 
   return (
     <section className='p-16'>
-      <div className='flex flex-col justify-center items-center pb-8'>
+      <div className='flex flex-col justify-center items-center'>
         <h2 className='text-2xl pb-4'>Sun & Moon Base Set</h2>
         <Image
           src={`/packs/sm1_pack.jpg`}
@@ -141,7 +141,8 @@ const SunMoon1 = async () => {
           className='max-h-60 object-contain'
         />
       </div>
-      <div className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-8 justify-center'>
+      <hr className='my-8' />
+      <div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-8'>
         {!!combinedPack.length &&
           combinedPack.map((pack) => (
             <div key={pack?.id}>

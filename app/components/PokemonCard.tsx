@@ -44,6 +44,7 @@ function PokemonCard({ pokemon }: { pokemon: PokemonProp }) {
             height={342}
             width={245}
             style={{ width: '100%' }}
+            className='rounded-xl'
           />
         </div>
         <div className='flex justify-between font-bold'>

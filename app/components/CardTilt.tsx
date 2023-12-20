@@ -93,6 +93,7 @@ const TiltCard = ({
           zoom();
         }
       }}
+      className='flex justify-center'
     >
       <motion.div
         className='flip-card-inner w-[245px] h-[342px] cursor-pointer'
@@ -108,7 +109,7 @@ const TiltCard = ({
           alt='Pokemon Card Back'
           height={342}
           width={245}
-          className='flip-card-front max-h-[342px]'
+          className='flip-card-front rounded-xl'
         />
         {isFlipped && (
           <motion.div
@@ -134,7 +135,7 @@ const TiltCard = ({
               alt={name || 'Card Image'}
               height={342}
               width={245}
-              className='flip-card-back max-h-[342px]'
+              className='flip-card-back max-h-[342px] rounded-xl'
             />
             {rarity === 'Reverse Holo' && !isAnimating && (
               <Image
