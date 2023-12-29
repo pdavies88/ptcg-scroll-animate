@@ -19,11 +19,13 @@ const TiltCard = ({
   image,
   rarity,
   supertype,
+  set,
 }: {
   name: string;
   image: string;
   rarity: string;
   supertype: string;
+  set?: string;
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
@@ -128,7 +130,7 @@ const TiltCard = ({
               rarity === 'Rare Secret') &&
               !isAnimating && <span className='shine' />}
             {rarity === 'Rare Holo' && !isAnimating && (
-              <span className='shine-small' />
+              <span className={`shine small ${set}`} />
             )}
             <Image
               src={image}
