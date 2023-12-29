@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { fetchCardTypes } from '../action';
 import { pickUniqueRandomObjects, weightedRandomSelection } from './helpers';
 import { CardData, CardWeighted } from './types';
-import TiltCard from '../components/CardTilt';
+import TiltCard from '../components/TiltCard';
 import RefreshPage from '../components/RefreshPage';
 
 // Pack Structure:
@@ -154,6 +154,7 @@ const SunMoon1 = async () => {
                   image={pack?.images?.large}
                   rarity={pack?.rarity}
                   supertype={pack?.supertype}
+                  set='sm1'
                 />
               </div>
             ))}

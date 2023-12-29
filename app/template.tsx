@@ -3,8 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
-    <AnimatePresence>
-      <motion.section>{children}</motion.section>
+    <AnimatePresence mode='wait'>
+      <motion.section key='content'>{children}</motion.section>
       <motion.div
         key='slide-in'
         className='slide-in'

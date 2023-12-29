@@ -64,3 +64,20 @@ export async function fetchCardTypes(set: string, type: string) {
 
   return cardData;
 }
+
+// For sets where energy does not have a rarity
+export async function fetchEnergies(set: string) {
+  const response = await fetch(
+    `https://api.pokemontcg.io/v2/cards?q=set.id:${set}%20supertype:energy`,
+    {
+      headers: {
+        'X-Api-Key': process.env.API_KEY!,
+      },
+    }
+  );
+
+  const { data } = await response.json();
+  const cardData = data.map(extractKeys);
+
+  return cardData;
+}
